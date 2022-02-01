@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="jquery-ui.min.css">
+
+
+    <title>Dropdown</title>
+</head>
+
+<body>
+    <style>
+        .content {
+            display: none;
+            border: 2px;
+            background-color: aliceblue;
+            position: absolute;
+        }
+
+        .dropdown:hover .content {
+            display: block;
+        }
+
+        .input {
+            width: 95%;
+            border: 3px solid black;
+            border-radius: 10px;
+            padding: 30px;
+        }
+    </style>
+    <h3>Dropdown practice</h3>
+    <div class="dropdowm">
+        click
+        <div class="content">
+            <p>first</p>
+            <p>second</p>
+        </div>
+    </div>
+    <input type="text" name="" placeholder="Enter your name" id="" class="input"><br>
+    <p id="demo"></p>
+    <div id="draggable" class="" style="height: 100px; width: 100px; background-color:black">
+        Dropable
+    </div>
+    <div id="drop"
+        style="height: 200px; width: 200px; background-color: antiquewhite; margin-left: 220px; margin-top: 100px;">
+        your data here
+        <p id="data"></p>
+    </div>
+
+    <h3 onclick="getdata()">Please click to show</h3>
+    <strong id="msg"></strong>
+    <script src="Ejquery.js" type="text/javascript"></script>
+    <script src="jquery-ui.min.js" type="text/javascript"></script>
+
+    <script type="text/javascript">
+
+        function getdata() {
+            $.ajax({
+                url: `https://api.jquery.com/ajaxSuccess/`,
+                headers: {
+                    'Content-Type': 'application/x-www-form-urlencoded'
+                 },
+                type: 'POST',
+                dataType: 'text',
+                success: successFn,
+                error: errorFn,
+                complete: function(xhr, status){
+                    $('#msg').append("COMPLETED");
+                }
+            })
+
+            function successFn(result) {
+            $('#data').append(result);
+            console.log("success");
+        }
+        function errorFn() {
+            $("#data").append("File not found");
+        }
+        }
+
+      
+    </script>
+
+
+
+</body>
+
+</html>
